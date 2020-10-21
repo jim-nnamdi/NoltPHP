@@ -1,8 +1,17 @@
 <?php
 
+define('BASEPATH', __DIR__);
+
+require('core/autoload/autoload.php');
 require('core/view/view.php');
 require('core/view/viewloader.php');
 
-$view_loader = new ViewLoader(BASEPATH . '/views/');
+$autoloader = new Autoload();
 
-$view = new View($view_loader);
+spl_autoload_register([$autoloader, 'load']);
+
+$autoloader->register('viewloader', function () {
+    return require(BASEPATH . '/core/view/viewloader.php');
+});
+
+$view = new View(new ViewLoader(BASEPATH . '/views/'));
