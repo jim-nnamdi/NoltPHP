@@ -14,4 +14,5 @@ $autoloader->register('viewloader', function () {
     return require(BASEPATH . '/core/view/viewloader.php');
 });
 
-$view = new View(new ViewLoader(BASEPATH . '/views/'));
+$view = new View(new ViewLoader(BASEPATH . '/views'));
+$router = new Router();

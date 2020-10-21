@@ -2,4 +2,6 @@
 
 require('../bootstrap.php');
 
-$view->display("welcome.php");
+$router->add('/', function () use ($view) {
+    $view->display("welcome.php");
+});
